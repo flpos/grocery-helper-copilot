@@ -1,0 +1,93 @@
+<form
+  class="stock-item-edit-form"
+  hx-put="/stock-items/{{ id }}"
+  hx-swap="outerHTML"
+>
+  <div class="bg-white rounded-lg shadow p-4 mb-3">
+    <h3 class="text-lg font-semibold text-gray-800 mb-4">Editar Item</h3>
+    
+    <div class="form-group mb-3">
+      <label for="stock-item-name-{{ id }}" class="block text-gray-700 font-semibold mb-2">
+        Nome do Item *
+      </label>
+      <input
+        type="text"
+        id="stock-item-name-{{ id }}"
+        name="name"
+        value="{{ name }}"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="stock-item-category-{{ id }}" class="block text-gray-700 font-semibold mb-2">
+        Categoria *
+      </label>
+      <select
+        id="stock-item-category-{{ id }}"
+        name="categoryId"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      >
+        {{#each categories}}
+          <option value="{{ id }}" {{#if (eq id ../categoryId)}}selected{{/if}}>{{ name }}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 mb-4">
+      <div class="form-group">
+        <label for="stock-item-quantity-{{ id }}" class="block text-gray-700 font-semibold mb-2">
+          Quantidade *
+        </label>
+        <input
+          type="number"
+          id="stock-item-quantity-{{ id }}"
+          name="quantity"
+          value="{{ quantity }}"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          step="0.01"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="stock-item-unit-{{ id }}" class="block text-gray-700 font-semibold mb-2">
+          Unidade *
+        </label>
+        <select
+          id="stock-item-unit-{{ id }}"
+          name="unit"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        >
+          <option value="kg" {{#if (eq unit "kg")}}selected{{/if}}>kg</option>
+          <option value="g" {{#if (eq unit "g")}}selected{{/if}}>g</option>
+          <option value="l" {{#if (eq unit "l")}}selected{{/if}}>l</option>
+          <option value="ml" {{#if (eq unit "ml")}}selected{{/if}}>ml</option>
+          <option value="un" {{#if (eq unit "un")}}selected{{/if}}>un</option>
+          <option value="pct" {{#if (eq unit "pct")}}selected{{/if}}>Pacote</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex gap-2">
+      <button
+        type="submit"
+        class="btn btn-primary flex-1"
+      >
+        Salvar
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary flex-1"
+        hx-get="/stock-items/{{ id }}"
+        hx-target="#stock-item-{{ id }}"
+        hx-swap="outerHTML"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</form>

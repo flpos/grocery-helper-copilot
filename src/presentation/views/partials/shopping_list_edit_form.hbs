@@ -1,0 +1,82 @@
+<form
+  class="shopping-list-edit-form"
+  hx-put="/shopping-lists/{{ id }}"
+  hx-swap="outerHTML"
+>
+  <div class="bg-white rounded-lg shadow p-4 mb-3">
+    <h3 class="text-lg font-semibold text-gray-800 mb-4">Editar Lista</h3>
+    
+    <div class="form-group mb-3">
+      <label for="list-name-{{ id }}" class="block text-gray-700 font-semibold mb-2">
+        Nome da Lista *
+      </label>
+      <input
+        type="text"
+        id="list-name-{{ id }}"
+        name="name"
+        value="{{ name }}"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="list-description-{{ id }}" class="block text-gray-700 font-semibold mb-2">
+        Descrição
+      </label>
+      <textarea
+        id="list-description-{{ id }}"
+        name="description"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        rows="2"
+      >{{ description }}</textarea>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="list-resource-type-{{ id }}" class="block text-gray-700 font-semibold mb-2">
+        Recurso Disponível
+      </label>
+      <select
+        id="list-resource-type-{{ id }}"
+        name="resourceType"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="">Selecione um tipo</option>
+        <option value="salary" {{#if (eq resourceType "salary")}}selected{{/if}}>Salário</option>
+        <option value="food_voucher" {{#if (eq resourceType "food_voucher")}}selected{{/if}}>Vale Alimentação</option>
+        <option value="other" {{#if (eq resourceType "other")}}selected{{/if}}>Outro</option>
+      </select>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="list-resource-date-{{ id }}" class="block text-gray-700 font-semibold mb-2">
+        Data Disponível
+      </label>
+      <input
+        type="date"
+        id="list-resource-date-{{ id }}"
+        name="resourceDate"
+        value="{{ resourceDate }}"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <div class="flex gap-2">
+      <button
+        type="submit"
+        class="btn btn-primary flex-1"
+      >
+        Salvar
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary flex-1"
+        hx-get="/shopping-lists/{{ id }}"
+        hx-target="closest form"
+        hx-swap="outerHTML"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</form>

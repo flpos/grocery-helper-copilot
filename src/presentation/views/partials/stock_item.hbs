@@ -1,0 +1,29 @@
+<div class="stock-item" id="stock-item-{{ id }}">
+  <div class="bg-white rounded-lg shadow p-4 mb-3">
+    <div class="flex justify-between items-center">
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800">{{ name }}</h3>
+        <p class="text-gray-600 text-sm">Quantidade: <span class="font-bold">{{ quantity }} {{ unit }}</span></p>
+      </div>
+      <div class="flex gap-2">
+        <button
+          class="btn btn-sm btn-warning"
+          hx-get="/stock-items/{{ id }}/edit"
+          hx-target="#stock-item-{{ id }}"
+          hx-swap="outerHTML"
+        >
+          Editar
+        </button>
+        <button
+          class="btn btn-sm btn-danger"
+          hx-delete="/stock-items/{{ id }}"
+          hx-confirm="Tem certeza que deseja remover este item?"
+          hx-swap="outerHTML swap:1s"
+          hx-on::after-swap="document.getElementById('stock-item-{{ id }}').remove()"
+        >
+          Deletar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

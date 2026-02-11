@@ -1,0 +1,47 @@
+<div class="shopping-list" id="shopping-list-{{ id }}">
+  <div class="bg-white rounded-lg shadow p-4 mb-3">
+    <div class="flex justify-between items-center">
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800">{{ name }}</h3>
+        {{#if description}}
+          <p class="text-gray-600 text-sm">{{ description }}</p>
+        {{/if}}
+        {{#if resourceType}}
+          <p class="text-sm text-blue-600 font-medium mt-1">
+            Recurso: {{ resourceType }}
+            {{#if resourceDate}}
+              - {{ resourceDate }}
+            {{/if}}
+          </p>
+        {{/if}}
+      </div>
+      <div class="flex gap-2">
+        <button
+          class="btn btn-sm btn-info"
+          hx-get="/shopping-lists/{{ id }}/items"
+          hx-target="body"
+          hx-swap="innerHTML"
+        >
+          Itens
+        </button>
+        <button
+          class="btn btn-sm btn-warning"
+          hx-get="/shopping-lists/{{ id }}/edit"
+          hx-target="#shopping-list-{{ id }}"
+          hx-swap="outerHTML"
+        >
+          Editar
+        </button>
+        <button
+          class="btn btn-sm btn-danger"
+          hx-delete="/shopping-lists/{{ id }}"
+          hx-confirm="Tem certeza que deseja remover esta lista?"
+          hx-swap="outerHTML swap:1s"
+          hx-on::after-swap="document.getElementById('shopping-list-{{ id }}').remove()"
+        >
+          Deletar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<form
+  class="shopping-list-form"
+  hx-post="/shopping-lists"
+  hx-target="#shopping-lists-list"
+  hx-swap="afterbegin"
+  hx-on::after-request="if(event.detail.xhr.status === 201) this.reset()"
+>
+  <div class="bg-white rounded-lg shadow p-4 mb-4">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Nova Lista de Compras</h2>
+    
+    <div class="form-group mb-3">
+      <label for="list-name" class="block text-gray-700 font-semibold mb-2">
+        Nome da Lista *
+      </label>
+      <input
+        type="text"
+        id="list-name"
+        name="name"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="list-description" class="block text-gray-700 font-semibold mb-2">
+        Descrição
+      </label>
+      <textarea
+        id="list-description"
+        name="description"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        rows="2"
+      ></textarea>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="list-resource-type" class="block text-gray-700 font-semibold mb-2">
+        Recurso Disponível
+      </label>
+      <select
+        id="list-resource-type"
+        name="resourceType"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="">Selecione um tipo</option>
+        <option value="salary">Salário</option>
+        <option value="food_voucher">Vale Alimentação</option>
+        <option value="other">Outro</option>
+      </select>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="list-resource-date" class="block text-gray-700 font-semibold mb-2">
+        Data Disponível
+      </label>
+      <input
+        type="date"
+        id="list-resource-date"
+        name="resourceDate"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary w-full"
+    >
+      Criar Lista
+    </button>
+  </div>
+</form>

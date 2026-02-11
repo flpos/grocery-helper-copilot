@@ -1,0 +1,31 @@
+<div class="category-item" id="category-{{ id }}">
+  <div class="bg-white rounded-lg shadow p-4 mb-3">
+    <div class="flex justify-between items-center">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800">{{ name }}</h3>
+        {{#if description}}
+          <p class="text-gray-600 text-sm">{{ description }}</p>
+        {{/if}}
+      </div>
+      <div class="flex gap-2">
+        <button
+          class="btn btn-sm btn-warning"
+          hx-get="/categories/{{ id }}/edit"
+          hx-target="#category-{{ id }}"
+          hx-swap="outerHTML"
+        >
+          Editar
+        </button>
+        <button
+          class="btn btn-sm btn-danger"
+          hx-delete="/categories/{{ id }}"
+          hx-confirm="Tem certeza?"
+          hx-swap="outerHTML swap:1s"
+          hx-on::after-swap="document.getElementById('category-{{ id }}').remove()"
+        >
+          Deletar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<form
+  class="category-form"
+  hx-post="/categories"
+  hx-target="#categories-list"
+  hx-swap="afterbegin"
+  hx-on::after-request="if(event.detail.xhr.status === 201) this.reset()"
+>
+  <div class="bg-white rounded-lg shadow p-4 mb-4">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Nova Categoria</h2>
+    
+    <div class="form-group mb-3">
+      <label for="category-name" class="block text-gray-700 font-semibold mb-2">
+        Nome *
+      </label>
+      <input
+        type="text"
+        id="category-name"
+        name="name"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      />
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="category-description" class="block text-gray-700 font-semibold mb-2">
+        Descrição
+      </label>
+      <textarea
+        id="category-description"
+        name="description"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        rows="2"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary w-full"
+    >
+      Criar Categoria
+    </button>
+  </div>
+</form>
