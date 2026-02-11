@@ -3,22 +3,26 @@
 ## ✅ Implementado (Sprint 1)
 
 ### Domain Layer
+
 - ✅ Entidades: `Category`, `StockItem`, `ShoppingList`, `ShoppingListItem`
 - ✅ Interfaces de repositório para todas as entidades
 - ✅ Types: `ResourceType`, `PriorityLevel`
 
 ### Application Layer
+
 - ✅ DTOs: Create, Update e Response para todas as entidades
 - ✅ Services: `CategoryService`, `StockItemService`, `ShoppingListService`, `ShoppingListItemService`
   - CRUD completo
   - Métodos adicionais: `markAsPurchased`, `updateStockQuantity`
 
 ### Infrastructure Layer
+
 - ✅ Configuração: Environment com dotenv
 - ✅ Database: SQLite com auto-migrations
 - ✅ Repositories: Implementações de repositório para todas as entidades
 
 ### Presentation Layer
+
 - ✅ Express com Handlebars
 - ✅ HTMX integrado
 - ✅ Routes: `/categories`, `/stock-items`, `/shopping-lists`
@@ -36,12 +40,14 @@
 ### 1. **Implementar Shopping List Items** 🔴 PRIORIDADE ALTA
 
 #### 1.1 Templates
+
 - [ ] `shopping_list_item.hbs` - Exibir item da lista
 - [ ] `shopping_list_item_form.hbs` - Formulário para adicionar item à lista
 - [ ] `shopping_list_item_edit_form.hbs` - Formulário para editar item
 - [ ] `shopping_list_items.hbs` - Página completa de itens da lista com priorização
 
 #### 1.2 Controller
+
 - [ ] `ShoppingListItemController.ts`
   - `create` - Adicionar item à lista
   - `getById` - Obter item específico
@@ -51,6 +57,7 @@
   - `delete` - Remover item
 
 #### 1.3 Routes
+
 - [ ] `shopping_list_items.ts`
   - `GET /shopping-lists/:listId/items` - Listar itens de uma lista
   - `POST /shopping-lists/:listId/items` - Adicionar item
@@ -74,6 +81,7 @@
 ### 3. **Funcionalidades Avançadas** 🟡 PRIORIDADE MÉDIA
 
 #### 3.1 Priorização Inteligente
+
 - [ ] Exibir sugestão de prioridade ao adicionar item à lista
 - [ ] Ordenação por:
   - Prioridade (high → medium → low)
@@ -81,6 +89,7 @@
   - Quantidade faltante no estoque
 
 #### 3.2 Integração Estoque ↔ Lista de Compras
+
 - [ ] Ao criar item de lista, validar se existe no estoque
 - [ ] Mostrar quantidade atual no estoque
 - [ ] Sugerir quantidade a comprar baseado em:
@@ -89,6 +98,7 @@
   - Tipo de recurso disponível
 
 #### 3.3 Histórico e Relatórios
+
 - [ ] Histórico de compras (itens já marcados como comprados)
 - [ ] Relatório de consumo por categoria
 - [ ] Previsão de próximas compras
@@ -119,13 +129,13 @@
 ## 🐛 Bugs/Issues Conhecidos
 
 - [ ] Helper `eq` do Handlebars foi adicionado manualmente (considerar usar uma biblioteca melhor no futuro)
-- [ ] Em produção, need to ensure views path é correto (atualmente tem lógica condicional)
 
 ---
 
 ## 📚 Notas Técnicas
 
 ### Estrutura de Arquivos
+
 ```
 src/
 ├── domain/              # Lógica de negócio pura
@@ -139,12 +149,14 @@ src/
 ```
 
 ### Padrões Utilizados
+
 - **Arquitetura Onion**: Camadas bem definidas
 - **Repository Pattern**: Abstração do acesso a dados
 - **DTO Pattern**: Transferência entre camadas
 - **Service Layer**: Lógica de negócio isolada
 
 ### Tecnologias
+
 - **Runtime**: Node.js + TypeScript
 - **Framework Web**: Express.js
 - **Template Engine**: Handlebars (hbs)
@@ -158,6 +170,7 @@ src/
 ## 🎯 Visão do Projeto
 
 O **Grocery Helper** é uma aplicação web para gerenciar mantimentos domésticos com:
+
 1. Cadastro e organização de itens em estoque
 2. Criação de listas de compras inteligentes
 3. Priorização baseada em disponibilidade de recursos

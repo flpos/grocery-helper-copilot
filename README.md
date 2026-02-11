@@ -1,17 +1,37 @@
 # Grocery Helper 🛒
 
-Uma aplicação web para gerenciar mantimentos domésticos, com controle de estoque e criação de listas de compras inteligentes.
+Uma aplicação web para gerenciar mantimentos domésticos, com controle de
+estoque e criação de listas de compras inteligentes.
+
+Feita como parte de um estudo para utilização de IA,
+especificamente utilizando o Copilot CLI com o modelo Haiku 4.5 da Claude.
+Até agora a experiência está sendo muito interessante, tive que lidar apenas
+com pequenos erros:
+
+- na lógica de utilização de partials no hbs (substituição do `-` por `_`
+  que não foi considerado inicialmente)
+- e alguns detalhes no uso do HTMX, alguns targets não faziam sentido e não
+  estavam funcionando.
+
+Pretendo continuar documentando a experiência aqui no README mesmo.
+
+Aliás, o código tem alguns problemas de lint, mas pretendo corrigir depois,
+assim como integrar o tailwind ao projeto, realizando o build junto,
+e trazer o htmx para dentro do projeto, ao invés de usar a CDN.
 
 ## 📋 Sobre o Projeto
 
-Grocery Helper é uma solução pessoal para organizar e acompanhar o estoque de alimentos em casa, facilitando a criação de listas de compras com priorização baseada em disponibilidade de recursos (salário, vale alimentação, etc).
+Grocery Helper é uma solução pessoal para organizar e acompanhar o estoque de
+alimentos em casa, facilitando a criação de listas de compras com priorização
+baseada em disponibilidade de recursos (salário, vale alimentação, etc).
 
 **Status**: Projeto pessoal em desenvolvimento
 
 ## ✨ Funcionalidades Principais
 
 - ✅ **Gerenciar Estoque**: Adicionar e remover quantidades de itens do estoque doméstico
-- ✅ **Categorização**: Organizar itens por categorias (alimentos, bebidas, higiene, etc)
+- ✅ **Categorização**: Organizar itens por categorias
+  - alimentos, bebidas, higiene, etc
 - ✅ **Lista de Compras**: Criar e gerenciar listas de compras dinâmicas
 - ✅ **Priorização Inteligente**: Priorizar itens de compra baseado em:
   - Disponibilidade de recursos (salário, vale alimentação)
@@ -19,9 +39,10 @@ Grocery Helper é uma solução pessoal para organizar e acompanhar o estoque de
 
 ## 🏗️ Arquitetura
 
-O projeto segue a **Arquitetura Onion** para manter separação de responsabilidades e facilitar testes e manutenção:
+O projeto segue a **Arquitetura Onion** para manter separação de responsabilidades
+e facilitar testes e manutenção:
 
-```
+```text
 src/
 ├── domain/                 # Entidades do negócio
 │   ├── entities/          # Modelos de domínio
@@ -50,14 +71,14 @@ src/
 
 ## 🛠️ Tecnologias
 
-| Camada | Tecnologia | Uso |
-|--------|-----------|-----|
-| Backend | **Express.js** | Framework web leve e flexível |
-| Frontend | **HTMX** | Interações dinâmicas sem JavaScript volumoso |
-| Templates | **Handlebars** | Renderização de HTML no servidor |
-| Estilo | **Tailwind CSS** | Framework CSS utility-first |
-| Banco de Dados | **SQLite** | Banco de dados leve e portável |
-| Runtime | **Node.js** | Ambiente JavaScript |
+| Camada         | Tecnologia       | Uso                                          |
+| -------------- | ---------------- | -------------------------------------------- |
+| Backend        | **Express.js**   | Framework web leve e flexível                |
+| Frontend       | **HTMX**         | Interações dinâmicas sem JavaScript volumoso |
+| Templates      | **Handlebars**   | Renderização de HTML no servidor             |
+| Estilo         | **Tailwind CSS** | Framework CSS utility-first                  |
+| Banco de Dados | **SQLite**       | Banco de dados leve e portável               |
+| Runtime        | **Node.js**      | Ambiente JavaScript                          |
 
 ## 📦 Requisitos
 
@@ -80,6 +101,9 @@ npm install
 ```
 
 ### 3. Configurar Banco de Dados
+
+Ainda não implementado...
+Mas assim que a aplicação inicia ele faz o migrate.
 
 ```bash
 npm run db:migrate
@@ -149,6 +173,7 @@ cp .env.example .env
 ```
 
 **Variáveis principais:**
+
 - `NODE_ENV`: Ambiente (development, production)
 - `PORT`: Porta da aplicação (padrão: 3000)
 - `DATABASE_PATH`: Caminho do arquivo SQLite
